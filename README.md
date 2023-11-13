@@ -6,7 +6,7 @@ Welcome to the Tic-Tac-Toe game! This console-based game allows you to play agai
 
 1. Clone the repository to your local machine.
    ```bash
-   git clone https://github.com/theakash04/TIC-TAC-TOE.git
+   git clone https://github.com/theakash04/tic-tac-toe.git
    ```
 
 2. Navigate to the project directory:

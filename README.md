@@ -11,7 +11,7 @@ Welcome to the Tic-Tac-Toe game! This console-based game allows you to play agai
 
 2. Navigate to the project directory:
     ```bash
-    cd tic-tac-toe
+    cd tic-tac-toe/code
     ```
 
 3. Compile the code

@@ -1,9 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<ctype.h>
-#include<time.h> 
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <time.h>
 
-//Global variable
+// Global variable
 char board[3][3];
 char const P = 'X';
 char const B = 'O';
@@ -18,187 +18,178 @@ void pwinner(char winner);
 
 int main()
 {
-    char winner = ' ';
-    char r = ' ';
+  char winner = ' ';
+  char r = ' ';
 
-    do{
+  do
+  {
 
-        winner = ' ';
-        r = ' ';
-        resetgame();
+    winner = ' ';
+    r = ' ';
+    resetgame();
 
-        while (winner == ' ' && checkfreespace() != 0)
-        {
-            printgame();
+    while (winner == ' ' && checkfreespace() != 0)
+    {
+      printgame();
 
-            playermove();
-            winner = checkwinner();
-            if(winner != ' ' || checkwinner() == 0)
-            {
-                break;
-            }
+      playermove();
+      winner = checkwinner();
+      if (winner != ' ' || checkwinner() == 0)
+      {
+        break;
+      }
 
-            botmove();
-            winner = checkwinner();
-            if(winner != ' ' || checkwinner() == 0)
-            {
-                break;
-            }
-        }
+      botmove();
+      winner = checkwinner();
+      if (winner != ' ' || checkwinner() == 0)
+      {
+        break;
+      }
+    }
 
+    printgame();
+    pwinner(winner);
+    printf("__________________________________\n");
+    printf("\nDo you want to play again!: ");
+    scanf(" %c", &r);
+    r = toupper(r);
+  } while (r == 'Y');
 
-        printgame();
-        pwinner(winner);
-        printf("__________________________________\n");
-        printf("\nDo you want to play again!: ");
-        scanf(" %c",&r);
-        r = toupper(r);
-    }while(r == 'Y');
-    
-    printf("\nThank you for Playing - DEX");
-    return 0;
+  printf("\nThank you for Playing - DEX");
+  return 0;
 }
 
-
-
-
-
-
-
-
-
-
-//Game Functions
+// Game Functions
 void resetgame()
 {
-    for(int i = 0; i<3; i++)
-    {
-        for(int j = 0; j<3; j++)
-        board[i][j] = ' ';
-    }
+  for (int i = 0; i < 3; i++)
+  {
+    for (int j = 0; j < 3; j++)
+      board[i][j] = ' ';
+  }
 }
 
 void printgame()
 {
-    printf(" %c | %c | %c ",board[0][0],board[0][1],board[0][2]);
-    printf("\n---|---|---\n");
-    printf(" %c | %c | %c ",board[1][0],board[1][1],board[1][2]);
-    printf("\n---|---|---\n");
-    printf(" %c | %c | %c ",board[2][0],board[2][1],board[2][2]);
-    printf("\n");
+  printf(" %c | %c | %c ", board[0][0], board[0][1], board[0][2]);
+  printf("\n---|---|---\n");
+  printf(" %c | %c | %c ", board[1][0], board[1][1], board[1][2]);
+  printf("\n---|---|---\n");
+  printf(" %c | %c | %c ", board[2][0], board[2][1], board[2][2]);
+  printf("\n");
 }
 
 int checkfreespace()
 {
-    int fspace = 9;
-    for(int i = 0; i<3; i++)
+  int fspace = 9;
+  for (int i = 0; i < 3; i++)
+  {
+    for (int j = 0; j < 3; j++)
     {
-        for(int j = 0; j<3; j++)
-        {
-            if(board[i][j] != ' ')
-            {
-                fspace--;
-            }
-        }
+      if (board[i][j] != ' ')
+      {
+        fspace--;
+      }
     }
-    return fspace;
+  }
+  return fspace;
 }
 
 void playermove()
 {
-    int x;
-    int y;
-    
+  int x;
+  int y;
 
-    do
+  do
+  {
+    printf("Enter Row  #(1,2,3): ");
+    scanf("%d", &x);
+    x--;
+
+    printf("Enter columns  #(1,2,3): ");
+    scanf(" %d", &y);
+    y--;
+
+    if (board[x][y] != ' ')
     {
-        printf("Enter Row  #(1,2,3): ");
-        scanf("%d",&x);
-        x--;
-
-        printf("Enter columns  #(1,2,3): ");
-        scanf(" %d",&y);
-        y--;
-
-        if(board[x][y] != ' ')
-        {
-            printf("Invalid move!!");
-        }
-        else
-        {
-            board[x][y] = P; 
-            break;
-        }
-    } while (board[x][y] != ' ');
+      printf("Invalid move!!");
+    }
+    else
+    {
+      board[x][y] = P;
+      break;
+    }
+  } while (board[x][y] != ' ');
 }
 
 void botmove()
 {
-    srand(time(0));
-    int x;
-    int y;
+  srand(time(0));
+  int x;
+  int y;
 
-    if(checkfreespace() > 0)
+  if (checkfreespace() > 0)
+  {
+    do
     {
-        do{
-        x = rand()%3;
-        y = rand()%3;
-        }while(board[x][y] != ' ');
+      x = rand() % 3;
+      y = rand() % 3;
+    } while (board[x][y] != ' ');
 
-        board[x][y] = B;
-    }
-    else
-    {
-        pwinner(' ');
-    }
+    board[x][y] = B;
+  }
+  else
+  {
+    pwinner(' ');
+  }
 }
 
 char checkwinner()
 {
-    //check rows
-    for(int i = 0; i<3; i++)
+  // check rows
+  for (int i = 0; i < 3; i++)
+  {
+    if (board[i][0] == board[i][1] && board[i][0] == board[i][2])
     {
-        if(board[i][0] == board[i][1] && board[i][0] == board[i][2])
-        {
-            return board[i][0];
-        }
+      return board[i][0];
     }
+  }
 
-    //check columns
-    for(int i = 0; i<3; i++)
+  // check columns
+  for (int i = 0; i < 3; i++)
+  {
+    if (board[0][i] == board[1][i] && board[0][i] == board[2][i])
     {
-        if(board[0][i] == board[1][i] && board[0][i] == board[2][i])
-        {
-            return board[0][i];
-        }
+      return board[0][i];
     }
+  }
 
-    //check diagnose
-    if(board[0][0] == board[1][1] && board[0][0] == board[2][2])
-    {
-        return board[0][0];
-    }
+  // check diagnose
+  if (board[0][0] == board[1][1] && board[0][0] == board[2][2])
+  {
+    return board[0][0];
+  }
 
-    if(board[0][2] == board[1][1] &&  board[0][2] == board[2][0])
-    {
-        return board[0][2];
-    }
+  if (board[0][2] == board[1][1] && board[0][2] == board[2][0])
+  {
+    return board[0][2];
+  }
 
-    return ' ';
+  return ' ';
 }
 
 void pwinner(char winner)
 {
-    if(winner == P)
-    {
-        printf("You win!!\n");
-    }
-    else if(winner == B)
-    {
-        printf("You Lose :(\n");
-    }
-    else
-    {
-        printf("It's a Draw ^_^\n");
-    }
+  if (winner == P)
+  {
+    printf("You win!!\n");
+  }
+  else if (winner == B)
+  {
+    printf("You Lose :(\n");
+  }
+  else
+  {
+    printf("It's a Draw ^_^\n");
+  }
 }

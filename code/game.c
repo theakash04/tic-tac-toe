@@ -50,8 +50,8 @@ int main()
 
         printgame();
         pwinner(winner);
-
-        printf("Do you want to play again!: \n");
+        printf("__________________________________\n");
+        printf("\nDo you want to play again!: ");
         scanf(" %c",&r);
         r = toupper(r);
     }while(r == 'Y');
@@ -59,6 +59,14 @@ int main()
     printf("\nThank you for Playing - DEX");
     return 0;
 }
+
+
+
+
+
+
+
+
 
 
 //Game Functions

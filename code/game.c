@@ -11,6 +11,7 @@ char const B = 'O';
 void resetgame();
 void printgame();
 int checkfreespace();
+
 void playermove();
 void botmove();
 char checkwinner();

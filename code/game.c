@@ -112,7 +112,7 @@ void playermove()
 
     if (board[x][y] != ' ')
     {
-      printf("Invalid move!!");
+      printf("Invalid move!!\n");
     }
     else
     {

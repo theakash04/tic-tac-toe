@@ -2,6 +2,13 @@
 
 Welcome to the Tic-Tac-Toe game! This console-based game allows you to play against a basic bot.
 
+## Video preview
+
+
+https://github.com/theakash04/tic-tac-toe/assets/146631447/097a36e5-8be4-4c25-9a27-d7464f154614
+
+
+
 ## How to Play
 
 1. Clone the repository to your local machine.

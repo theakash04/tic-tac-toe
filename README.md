@@ -52,4 +52,4 @@ This project is licensed under the MIT [License](LICENSE) - see the LICENSE file
 
 ## About the Developer
 
-This Game is created by Akash. Connect with Akash on [Twitter](https://twitter.com/THEAkash04) and happy coding!
+This Game was created by Akash. Connect with Akash on [Twitter](https://twitter.com/THEAkash04) and happy coding!
